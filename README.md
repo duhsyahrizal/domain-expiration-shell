@@ -80,4 +80,4 @@ Usage: domain-check-2.sh [ -e email ] [ -x expir_days ] [ -q ] [ -a ] [ -h ]
 Authors:
 --------
 * Origianl Author: Matty < matty91 at gmail dot com > https://github.com/Matty9191
-* Maintained by duhsyahrizal
+* Forked from nixcraft & Maintained by duhsyahrizal
