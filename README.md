@@ -8,6 +8,7 @@ Use the curl or wget command to grab script as follows:
 
 ```
 $ wget https://raw.githubusercontent.com/duhsyahrizal/domain-check-shell/master/domain-check-2.sh
+$ wget https://raw.githubusercontent.com/duhsyahrizal/domain-check-shell/master/telegram
 ## [ sample domain list for testing purpose ] ##
 $ wget https://raw.githubusercontent.com/duhsyahrizal/domain-check-shell/master/domain-list.txt 
 ## [ install it in /usr/local/bin dir ] ##
