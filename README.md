@@ -1,6 +1,6 @@
 Domain Expiration Check Shell Script
 ====================================
-A simple shell script to display or notify the user via email about domain status and expiry date. 
+A simple shell script to display or notify the user using telegram bot. 
 
 Installation:
 -------------
@@ -13,6 +13,14 @@ $ wget https://raw.githubusercontent.com/duhsyahrizal/domain-check-shell/master/
 ## [ install it in /usr/local/bin dir ] ##
 $ sudo cp -vf domain-check-2.sh /usr/local/bin/domain-check
 $ sudo chmod +x /usr/local/bin/domain-check-2.sh
+```
+
+Configuration with telegram:
+------
+Replace this variable to your token bot and chat id
+```
+TOKEN_BOT_TELEGRAM=<YOUR_TOKEN>
+CHAT_ID_TELEGRAM=<CHAT_ID_GROUP_OR_PRIVATE>
 ```
 
 Usage:
