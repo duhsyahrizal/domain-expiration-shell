@@ -178,6 +178,9 @@ TOKEN_BOT_TELEGRAM="0123456789:abcdefghijklmnopqrstuvwxyz_012345678"
 # Chat ID Group / Private Telegram
 CHAT_ID_TELEGRAM="123456789"
 
+# PATH OF DOMAIN EXPIRATION
+BIN_PATH=<path_to_this_project>
+
 # Who to page when an expired domain is detected (cmdline: -e)
 ADMIN="sysadmin@mydomain.com"
 
@@ -876,7 +879,7 @@ check_domain_status()
            fi
 
            prints "${DOMAIN}" "Expired" "${DOMAINDATE}" "${DOMAINDIFF}" "${REGISTRAR}"
-           ./telegram -t ${TOKEN_BOT_TELEGRAM} -c ${CHAT_ID_TELEGRAM} "Domain ${DOMAIN} "$'\n'"Status : Expired "$'\360\237\224\245'" "$'\n'"Expire : ${DOMAINDATE} "$'\n'"Was expired ${DOMAINDIFF} days ago"
+           ${BIN_PATH}/telegram -t ${TOKEN_BOT_TELEGRAM} -c ${CHAT_ID_TELEGRAM} "Domain ${DOMAIN} "$'\n'"Status : Expired "$'\360\237\224\245'" "$'\n'"Expire : ${DOMAINDATE} "$'\n'"Was expired ${DOMAINDIFF} days ago"
 
 
     elif [ ${DOMAINDIFF} == ${WARNDAYS} ]
@@ -887,7 +890,7 @@ check_domain_status()
                     | ${MAIL} -s "Domain ${DOMAIN} will expire in ${WARNDAYS}-days or less" ${ADMIN}
             fi
             prints "${DOMAIN}" "Expiring" "${DOMAINDATE}" "${DOMAINDIFF}" "${REGISTRAR}"
-            ./telegram -t ${TOKEN_BOT_TELEGRAM} -c ${CHAT_ID_TELEGRAM} "Domain ${DOMAIN} "$'\n'"Status : Warning "$'\342\232\240'" "$'\n'"Will expire at ${DOMAINDATE} "$'\n'"Will expire in ${WARNDAYS} days"
+            ${BIN_PATH}/telegram -t ${TOKEN_BOT_TELEGRAM} -c ${CHAT_ID_TELEGRAM} "Domain ${DOMAIN} "$'\n'"Status : Warning "$'\342\232\240'" "$'\n'"Will expire at ${DOMAINDATE} "$'\n'"Will expire in ${WARNDAYS} days"
      elif [ ${DOMAINDIFF} == ${CRITDAYS} ]
      then
             if [ "${ALARM}" == "TRUE" ]
@@ -895,7 +898,7 @@ check_domain_status()
                     prints "${DOMAIN}" "Critical" "${DOMAINDATE}" "${DOMAINDIFF}" "${REGISTRAR}"
             fi
             prints "${DOMAIN}" "Critical" "${DOMAINDATE}" "${DOMAINDIFF}" "${REGISTRAR}"
-            ./telegram -t ${TOKEN_BOT_TELEGRAM} -c ${CHAT_ID_TELEGRAM} "Domain ${DOMAIN} "$'\n'"Status : Critical "$'\360\237\224\245'" "$'\n'"Will expire at ${DOMAINDATE} "$'\n'"Will expire in ${CRITDAYS} days"
+            ${BIN_PATH}/telegram -t ${TOKEN_BOT_TELEGRAM} -c ${CHAT_ID_TELEGRAM} "Domain ${DOMAIN} "$'\n'"Status : Critical "$'\360\237\224\245'" "$'\n'"Will expire at ${DOMAINDATE} "$'\n'"Will expire in ${CRITDAYS} days"
      else
             prints "${DOMAIN}" "Valid" "${DOMAINDATE}"  "${DOMAINDIFF}" "${REGISTRAR}"
      fi
