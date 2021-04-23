@@ -173,10 +173,10 @@ PATH=/bin:/usr/bin:/usr/local/bin:/usr/local/ssl/bin:/usr/sfw/bin
 export PATH
 
 # Token BOT Telegram
-TOKEN_BOT_TELEGRAM="1790537589:AAGF0UlzNcE--6YNzGB_LlR0mByd4zgX87U"
+TOKEN_BOT_TELEGRAM="0123456789:abcdefghijklmnopqrstuvwxyz_012345678"
 
 # Chat ID Group / Private Telegram
-CHAT_ID_TELEGRAM="-579839116"
+CHAT_ID_TELEGRAM="123456789"
 
 # Who to page when an expired domain is detected (cmdline: -e)
 ADMIN="sysadmin@mydomain.com"
