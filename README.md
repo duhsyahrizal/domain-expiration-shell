@@ -17,7 +17,7 @@ $ sudo chmod +x /usr/local/bin/domain-check-2.sh
 
 Configuration with telegram:
 ------
-Replace this variable to your token bot and chat id
+Replace this variable to your token bot and chat id of telegram
 ```
 TOKEN_BOT_TELEGRAM=<YOUR_TOKEN>
 CHAT_ID_TELEGRAM=<CHAT_ID_GROUP_OR_PRIVATE>
