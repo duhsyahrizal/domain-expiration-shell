@@ -23,7 +23,7 @@ TOKEN_BOT_TELEGRAM=<YOUR_TOKEN>
 CHAT_ID_TELEGRAM=<CHAT_ID_GROUP_OR_PRIVATE>
 ```
 
-Usage:
+Usage for notify to telegram:
 ------
 Run it as follows:
 ```
