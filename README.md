@@ -91,6 +91,6 @@ Usage: domain-check-2.sh [ -e email ] [ -x expir_days ] [ -q ] [ -a ] [ -h ]
 
 Authors:
 --------
-* Origianl Author: Matty < matty91 at gmail dot com > https://github.com/Matty9191
+* Original Author: Matty < matty91 at gmail dot com > https://github.com/Matty9191
 * Forked from nixcraft 
 * Supported & Maintained by duhsyahrizal > abduhsyahrizal02@gmail.com
