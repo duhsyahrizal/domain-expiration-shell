@@ -175,7 +175,10 @@ export PATH
 ADMIN="sysadmin@mydomain.com"
 
 # Number of days in the warning threshhold  (cmdline: -x)
-WARNDAYS=30
+WARNDAYS=5
+
+# Number of days in the critical
+CRITDAYS=3
 
 # If QUIET is set to TRUE, don't print anything on the console (cmdline: -q)
 QUIET="FALSE"
@@ -866,8 +869,10 @@ check_domain_status()
            fi
 
            prints "${DOMAIN}" "Expired" "${DOMAINDATE}" "${DOMAINDIFF}" "${REGISTRAR}"
+           ./telegram.sh/telegram -t 1790537589:AAGF0UlzNcE--6YNzGB_LlR0mByd4zgX87U -c -579839116 "Domain ${DOMAIN} "$'\n'"Status : Expired "$'\360\237\224\245'" "$'\n'"Expire : ${DOMAINDATE} "$'\n'"Was expired ${DOMAINDIFF} days ago"
 
-    elif [ ${DOMAINDIFF} -lt ${WARNDAYS} ]
+
+    elif [ ${DOMAINDIFF} == ${WARNDAYS} ]
     then
            if [ "${ALARM}" == "TRUE" ]
            then
@@ -875,9 +880,19 @@ check_domain_status()
                     | ${MAIL} -s "Domain ${DOMAIN} will expire in ${WARNDAYS}-days or less" ${ADMIN}
             fi
             prints "${DOMAIN}" "Expiring" "${DOMAINDATE}" "${DOMAINDIFF}" "${REGISTRAR}"
+            ./telegram.sh/telegram -t 1790537589:AAGF0UlzNcE--6YNzGB_LlR0mByd4zgX87U -c -579839116 "Domain ${DOMAIN} "$'\n'"Status : Warning "$'\342\232\240'" "$'\n'"Will expire at ${DOMAINDATE} "$'\n'"Will expire in ${WARNDAYS} days"
+     elif [ ${DOMAINDIFF} == ${CRITDAYS} ]
+     then
+            if [ "${ALARM}" == "TRUE" ]
+            then
+                    prints "${DOMAIN}" "Critical" "${DOMAINDATE}" "${DOMAINDIFF}" "${REGISTRAR}"
+            fi
+            prints "${DOMAIN}" "Critical" "${DOMAINDATE}" "${DOMAINDIFF}" "${REGISTRAR}"
+            ./telegram.sh/telegram -t 1790537589:AAGF0UlzNcE--6YNzGB_LlR0mByd4zgX87U -c -579839116 "Domain ${DOMAIN} "$'\n'"Status : Critical "$'\360\237\224\245'" "$'\n'"Will expire at ${DOMAINDATE} "$'\n'"Will expire in ${CRITDAYS} days"
      else
             prints "${DOMAIN}" "Valid" "${DOMAINDATE}"  "${DOMAINDIFF}" "${REGISTRAR}"
      fi
+
 }
 
 ####################################################
