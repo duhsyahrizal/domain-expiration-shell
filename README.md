@@ -65,9 +65,12 @@ google.se                           MarkMonitor Inc                             
 google.dk                           DK Hostmaster A/S                              Valid    31-mar-2018   156
 ```
 
+Configure for cronjob on Ubuntu
+-----------
 ```
-@daily /path/to/domain-check-2.sh -f /path/to/your-domains.txt -e you@example.com
+0 9 * * * /path/to/domain-check-2.sh -q -f /path/to/your-domains.txt >> /dev/null 2>&1
 ```
+
 Getting help
 ------------
 ```
@@ -88,4 +91,5 @@ Usage: domain-check-2.sh [ -e email ] [ -x expir_days ] [ -q ] [ -a ] [ -h ]
 Authors:
 --------
 * Origianl Author: Matty < matty91 at gmail dot com > https://github.com/Matty9191
-* Forked from nixcraft & Maintained by duhsyahrizal
+* Forked from nixcraft 
+* Supported & Maintained by duhsyahrizal > abduhsyahrizal02@gmail.com
