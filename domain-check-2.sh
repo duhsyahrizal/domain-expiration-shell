@@ -5,13 +5,14 @@
 #
 # Author: Matty < matty91 at gmail dot com >
 #
-# Current Version: 2.20
+# Current Version: 2.25
 # Last Updated: 22-Apr-2021
 #
 # Revision History:
 #
-#  Version 2.20
+#  Version 2.25
 #   Added support for domain .id/.my.id/.co.id -- Abduh Syahrizal <github.com/duhsyahrizal>
+#   Added support for notification on telegram if date expire near WARNDAYS and CRITDAYS
 #  
 #  Version 2.18
 #   Added support for .pro/.mx/.ro/.aero/.asia/.cc/.college domain -- Vivek Gite <github.com/nixcraft>
@@ -170,6 +171,12 @@
 
 PATH=/bin:/usr/bin:/usr/local/bin:/usr/local/ssl/bin:/usr/sfw/bin
 export PATH
+
+# Token BOT Telegram
+TOKEN_BOT_TELEGRAM="1790537589:AAGF0UlzNcE--6YNzGB_LlR0mByd4zgX87U"
+
+# Chat ID Group / Private Telegram
+CHAT_ID_TELEGRAM="-579839116"
 
 # Who to page when an expired domain is detected (cmdline: -e)
 ADMIN="sysadmin@mydomain.com"
@@ -869,7 +876,7 @@ check_domain_status()
            fi
 
            prints "${DOMAIN}" "Expired" "${DOMAINDATE}" "${DOMAINDIFF}" "${REGISTRAR}"
-           ./telegram.sh/telegram -t 1790537589:AAGF0UlzNcE--6YNzGB_LlR0mByd4zgX87U -c -579839116 "Domain ${DOMAIN} "$'\n'"Status : Expired "$'\360\237\224\245'" "$'\n'"Expire : ${DOMAINDATE} "$'\n'"Was expired ${DOMAINDIFF} days ago"
+           ./telegram -t ${TOKEN_BOT_TELEGRAM} -c ${CHAT_ID_TELEGRAM} "Domain ${DOMAIN} "$'\n'"Status : Expired "$'\360\237\224\245'" "$'\n'"Expire : ${DOMAINDATE} "$'\n'"Was expired ${DOMAINDIFF} days ago"
 
 
     elif [ ${DOMAINDIFF} == ${WARNDAYS} ]
@@ -880,7 +887,7 @@ check_domain_status()
                     | ${MAIL} -s "Domain ${DOMAIN} will expire in ${WARNDAYS}-days or less" ${ADMIN}
             fi
             prints "${DOMAIN}" "Expiring" "${DOMAINDATE}" "${DOMAINDIFF}" "${REGISTRAR}"
-            ./telegram.sh/telegram -t 1790537589:AAGF0UlzNcE--6YNzGB_LlR0mByd4zgX87U -c -579839116 "Domain ${DOMAIN} "$'\n'"Status : Warning "$'\342\232\240'" "$'\n'"Will expire at ${DOMAINDATE} "$'\n'"Will expire in ${WARNDAYS} days"
+            ./telegram -t ${TOKEN_BOT_TELEGRAM} -c ${CHAT_ID_TELEGRAM} "Domain ${DOMAIN} "$'\n'"Status : Warning "$'\342\232\240'" "$'\n'"Will expire at ${DOMAINDATE} "$'\n'"Will expire in ${WARNDAYS} days"
      elif [ ${DOMAINDIFF} == ${CRITDAYS} ]
      then
             if [ "${ALARM}" == "TRUE" ]
@@ -888,7 +895,7 @@ check_domain_status()
                     prints "${DOMAIN}" "Critical" "${DOMAINDATE}" "${DOMAINDIFF}" "${REGISTRAR}"
             fi
             prints "${DOMAIN}" "Critical" "${DOMAINDATE}" "${DOMAINDIFF}" "${REGISTRAR}"
-            ./telegram.sh/telegram -t 1790537589:AAGF0UlzNcE--6YNzGB_LlR0mByd4zgX87U -c -579839116 "Domain ${DOMAIN} "$'\n'"Status : Critical "$'\360\237\224\245'" "$'\n'"Will expire at ${DOMAINDATE} "$'\n'"Will expire in ${CRITDAYS} days"
+            ./telegram -t ${TOKEN_BOT_TELEGRAM} -c ${CHAT_ID_TELEGRAM} "Domain ${DOMAIN} "$'\n'"Status : Critical "$'\360\237\224\245'" "$'\n'"Will expire at ${DOMAINDATE} "$'\n'"Will expire in ${CRITDAYS} days"
      else
             prints "${DOMAIN}" "Valid" "${DOMAINDATE}"  "${DOMAINDIFF}" "${REGISTRAR}"
      fi
